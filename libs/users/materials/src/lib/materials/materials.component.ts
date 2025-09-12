@@ -4,7 +4,7 @@ import {FoldersListContainerComponent} from "@users/feature-folders-list";
 
 @Component({
   selector: 'users-materials',
-  imports: [CommonModule,FoldersListContainerComponent],
+  imports: [CommonModule, FoldersListContainerComponent],
   templateUrl: './materials.component.html',
   styleUrl: './materials.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

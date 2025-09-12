@@ -26,6 +26,7 @@ import { userEffects, USERS_FEATURE_KEY, usersReducer } from '@users/users/data-
 
 import { appRoutes } from './app.routes';
 import { environment } from '../environments/environment.development';
+import { FoldersEffects, folderFeature } from '@users/data-access';
 
 function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -48,6 +49,7 @@ export const appConfig: ApplicationConfig = {
       githubEffects,
       backlogEffects,
       SettingsEffects,
+      FoldersEffects,
     ),
     provideStore({
       router: routerReducer,
@@ -59,6 +61,7 @@ export const appConfig: ApplicationConfig = {
       [tasksFeature.name]: tasksFeature.reducer,
       [githubApiFeature.name]: githubApiFeature.reducer,
       [backlogFeature.name]: backlogFeature.reducer,
+      [folderFeature.name]: folderFeature.reducer,
     }),
     provideRouterStore(),
     provideStoreDevtools({

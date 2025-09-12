@@ -8,4 +8,4 @@ const { selectAll } = foldersAdapter.getSelectors();
 
 export const selectFodlersStatus = createSelector(selectFolderState, (state: FoldersState) => state.status);
 
-export const selectAllFolders = createSelector(selectFolderState, (state: FoldersState) => selectAll(state));
+export const selectAllFolders = createSelector(selectFolderState, (state: FoldersState) => state.folder);
