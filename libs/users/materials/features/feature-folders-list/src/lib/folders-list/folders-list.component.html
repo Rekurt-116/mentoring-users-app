@@ -1,1 +1,10 @@
-<p>folders-list works!</p>
+<div class="folders-list">
+  <ng-container *ngFor="let folder of folders">
+  <users-folders-card
+    [folder]="folder"
+    (deleteFolder)="onDeleteFolder(folder)"
+    (dblclick)="onOpenFolder(folder.id)">
+  </users-folders-card>
+</ng-container>
+</div>
+

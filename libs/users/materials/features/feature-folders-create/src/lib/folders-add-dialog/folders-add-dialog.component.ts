@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,22 +15,22 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class FoldersAddDialogComponent {
   public dialogRef = inject(MatDialogRef);
-  // public formControl: FormControl;
+  public formControl: FormControl;
 
-  // constructor(@Inject(MAT_DIALOG_DATA) public data: { title: string }) {
-  //   this.formControl = new FormControl(this.data.title);
-  // }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { title: string }) {
+    this.formControl = new FormControl('', [Validators.required]);
+  }
 
   cancel(): void {
     this.dialogRef.close();
   }
 
-  // save(): void {
-  //   if (this.formControl.valid) {
-  //     const controlData = {
-  //       title: this.formControl.value.trim(),
-  //     };
-  //     this.dialogRef.close(controlData);
-  //   }
-  // }
+  save(): void {
+    if (this.formControl.valid) {
+      const controlData = {
+        title: this.formControl.value.trim(),
+      };
+      this.dialogRef.close(controlData);
+    }
+  }
 }

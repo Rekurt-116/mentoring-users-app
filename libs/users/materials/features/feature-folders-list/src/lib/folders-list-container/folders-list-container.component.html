@@ -1,2 +1,19 @@
-<users-folders-list></users-folders-list>
-<users-folders-add-button></users-folders-add-button>
+<ng-container
+  *ngrxLet="{
+    allFolders: allFolders$,
+    foldersStatus: status$,
+  } as vm"
+>
+  <ng-container [ngSwitch]="vm?.foldersStatus">
+    <ng-container *ngSwitchCase="'loading'">
+      <mat-progress-bar color="accent" mode="indeterminate"></mat-progress-bar>
+    </ng-container>
+    <users-folders-list
+      [folders]="vm.allFolders"
+      (deleteFolder)="deleteFolder($event)"
+      (openFolder)="openFolder($event)"
+    >
+    </users-folders-list>
+    <users-folders-add-button></users-folders-add-button>
+  </ng-container>
+</ng-container>

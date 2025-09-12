@@ -1,1 +1,28 @@
-<p>folders-card works!</p>
+<button 
+    type="button" mat-flat-button
+    class="folder-card"
+    (mouseenter)="showDelete = true"
+    (mouseleave)="showDelete = false"
+    (dblclick)="openMaterial(folder.id)"
+    >
+    <div class="cart-container">
+        <div class="icons-container">
+            <div class="folder-icon">
+                <mat-icon>topic</mat-icon>
+            </div>
+            <div class="delete-icon" [ngClass]="{ 'visible': showDelete }">
+                <button mat-mini-fab (click)="onDeleteFolder()" color="warn">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="titles-container">
+            <div class="folder-title">
+                {{ folder.title }}
+            </div>
+            <div class="folder-date">
+                {{ folder.created_at | date: 'dd.MM.yyyy, HH:mm' }}
+            </div>
+        </div>
+    </div>
+</button>
