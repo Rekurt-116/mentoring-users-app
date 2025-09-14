@@ -1,12 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Action, createFeature, createReducer, on } from '@ngrx/store';
-import * as FoldersActions from './folders-actions';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { IFolder } from '@users/data-access';
+import { createFeature, createReducer, on } from '@ngrx/store';
+
+import * as FoldersActions from './folders-actions';
+import { IFolder } from '../../interfaces/folders-interfaces/get.interface';
 import { FOLDERS_FEATURE_KEY } from '../constans/folders-feature-key.constant';
 
 export interface FoldersState extends EntityState<IFolder> {
-  folder: IFolder[];
+  folders: IFolder[];
   status: string;
   error: HttpErrorResponse | null;
 }
@@ -14,7 +15,7 @@ export interface FoldersState extends EntityState<IFolder> {
 export const foldersAdapter: EntityAdapter<IFolder> = createEntityAdapter<IFolder>();
 
 const initialState: FoldersState = foldersAdapter.getInitialState({
-  folder: [],
+  folders: [],
   status: 'init',
   error: null,
 });
@@ -22,25 +23,25 @@ const initialState: FoldersState = foldersAdapter.getInitialState({
 export const folderFeature = createFeature({
   name: FOLDERS_FEATURE_KEY,
   reducer: createReducer(
-  initialState,
-  on(FoldersActions.loadFoldersSuccess, (state, { folders }) => ({
-    ...state,
-    folder: folders,
-    status: 'loaded' as const,
-  })),
-  on(FoldersActions.loadFoldersFailed, (state, { error }) => ({
-    ...state,
-    status: 'error' as const,
-    folderError: error,
-  })),
-  on(FoldersActions.addFolderSuccess, (state, { folderData }) => ({
-    ...state,
-    folder: [...state.folder, folderData],
-  })),
-  on(FoldersActions.updateFolderStatus, (state, { status }) => ({
-    ...state,
-    status,
-  })),
-  on(FoldersActions.deleteFolderSuccess, (state, { id }) => foldersAdapter.removeOne(id, { ...state }))
-)
+    initialState,
+    on(FoldersActions.loadFoldersSuccess, (state, { folders }) => ({
+      ...state,
+      folder: folders,
+      status: 'loaded' as const,
+    })),
+    on(FoldersActions.loadFoldersFailed, (state, { error }) => ({
+      ...state,
+      status: 'error' as const,
+      folderError: error,
+    })),
+    on(FoldersActions.addFolderSuccess, (state, { folderData }) => ({
+      ...state,
+      folder: [...state.folders, folderData],
+    })),
+    on(FoldersActions.updateFolderStatus, (state, { status }) => ({
+      ...state,
+      status,
+    })),
+    on(FoldersActions.deleteFolderSuccess, (state, { id }) => foldersAdapter.removeOne(id, { ...state })),
+  ),
 });

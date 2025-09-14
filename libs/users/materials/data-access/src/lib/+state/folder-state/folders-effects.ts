@@ -1,8 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { ApiService } from '@core/data-access-api';
-import * as FoldersActions from './folders-actions';
 import { catchError, map, of, switchMap } from 'rxjs';
+
+import { ApiService } from '@core/data-access-api';
+
+import * as FoldersActions from './folders-actions';
 import { IFolder } from '../../interfaces/folders-interfaces/get.interface';
 import { CreateFolder } from '../../interfaces/folders-interfaces/post.interface';
 
