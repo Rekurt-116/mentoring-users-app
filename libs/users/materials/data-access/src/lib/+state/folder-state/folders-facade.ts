@@ -1,11 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 
 import * as FoldersActions from './folders-actions';
 import * as FoldersSelectors from './folders-selectors';
-import { IFolder } from '../../interfaces/folders-interfaces/get.interface';
 import { CreateFolder } from '../../interfaces/folders-interfaces/post.interface';
+import { Observable } from 'rxjs';
+import { IFolder } from '../../interfaces/folders-interfaces/get.interface';
 
 @Injectable({ providedIn: 'root' })
 export class FoldersFacade {

@@ -1,10 +1,11 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { foldersAdapter, FoldersState } from "./folders-reducer";
+import { FOLDERS_FEATURE_KEY } from "../constans/folders-feature-key.constant";
 
-import { FoldersState } from './folders-reducer';
-import { FOLDERS_FEATURE_KEY } from '../constans/folders-feature-key.constant';
+export const selectFolderState = createFeatureSelector<FoldersState>(FOLDERS_FEATURE_KEY);
 
-export const selectFoldersState = createFeatureSelector<FoldersState>(FOLDERS_FEATURE_KEY);
+const { selectAll } = foldersAdapter.getSelectors();
 
-export const selectFodlersStatus = createSelector(selectFoldersState, (state: FoldersState) => state.status);
+export const selectFodlersStatus = createSelector(selectFolderState, (state: FoldersState) => state.status);
 
-export const selectAllFolders = createSelector(selectFoldersState, (state: FoldersState) => state.folders);
+export const selectAllFolders = createSelector(selectFolderState, (state: FoldersState) => state.folder);
