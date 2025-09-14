@@ -1,7 +1,7 @@
 export interface IMaterial {
-    id: number,
-    created_at: Date,
-    title: string,
-    material_link: string,
-    folder_id: number
-  }
+  id: number;
+  created_at: Date;
+  title: string;
+  material_link: string;
+  folder_id: number;
+}
