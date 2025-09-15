@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FoldersCardComponent } from '../folders-card/folders-card.component';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { IFolder } from '@users/data-access';
+
+import { FoldersCardComponent } from '../folders-card/folders-card.component';
 
 @Component({
   selector: 'users-folders-list',
@@ -12,7 +14,7 @@ import { IFolder } from '@users/data-access';
 })
 export class FoldersListComponent {
   @Input({ required: true })
-  folders!: IFolder[]
+  folders!: IFolder[];
 
   @Output() deleteFolder = new EventEmitter();
   @Output() openFolder = new EventEmitter<number>();

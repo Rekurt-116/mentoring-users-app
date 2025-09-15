@@ -69,7 +69,7 @@ const reducer = createReducer(
     ...state,
     status,
   })),
-  on(UsersActions.setUsersFilter, (state, {filter}) => ({
+  on(UsersActions.setUsersFilter, (state, { filter }) => ({
     ...state,
     usersFilter: filter,
   })),
